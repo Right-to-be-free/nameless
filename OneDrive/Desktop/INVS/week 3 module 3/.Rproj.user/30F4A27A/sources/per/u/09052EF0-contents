@@ -1,0 +1,48 @@
+library(tidyverse)
+
+
+?msleep
+glimpse(msleep)
+view(msleep)
+
+
+data()
+
+# rename a variable
+msleep %>%
+  rename("conserv"= "conservation") %>% 
+  glimpse()
+
+#reorder variable
+ msleep %>% 
+   select(vore, name, everything())
+ 
+# change variable type
+ 
+class(msleep$vore)
+glimpse(msleep$vore)
+
+msleep&vore <- as.factor(msleep$vore)
+glimpse(msleep)
+
+msleep %>% 
+  mutate(vore = as.character(vore)) %>% 
+  glimpse()
+
+names(msleep)
+
+msleep %>% 
+  select(3:6,
+         awake,
+         starts_with("sleep"),
+         contains("wt")) %>% 
+  names()
+
+# fliter and arrange data
+
+ unique(msleep$order)
+ 
+ msleep %>% 
+   Filter(order == "carnivora"|
+            order == "primates")&
+   

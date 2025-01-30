@@ -1,0 +1,37 @@
+
+min(msleep$awake)
+max(msleep$awake)
+range(msleep$awake)
+IQR(msleep$awake)
+mean(msleep$awake)
+median(msleep$awake)
+var(msleep$awake)
+summarise selected variables
+
+summary(msleep)
+summary(msleep$sleep_total)
+
+msleep %>%
+  select(sleep_total, brainwt)%>%
+  summary
+  
+
+
+#creating contingency tables
+
+library(MASS)
+attach(cars93)
+
+glimpse(cars93)
+
+table(AirBags, Origin)
+addmargins(table(Airbags, Origin),1)
+
+
+
+
+
+
+
+
+

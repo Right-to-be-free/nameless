@@ -1,0 +1,15 @@
+
+
+The R code:
+
+#load data into the software
+View(R)
+# attach data
+attach(R)
+#Plotting the scatter plot between GDP PER CAPITA AS X AXIS AND LIFE ECPECTANCY AS Y AXIS
+
+> plot(`GDP PER CAPITA`, `LIFE EXPECTANCY`, main = "SCATTERPLOT",
+       +      xlab = "GDP PER CAPITA", ylab = "LIFE EXPECTANCY",
+       +      pch = 19, frame = FALSE)
+> abline(lm(`LIFE EXPECTANCY` ~ `GDP PER CAPITA`, data = R), col = "blue")
+>

@@ -1,0 +1,46 @@
+library(tidyverse)
+
+data()
+?BOD
+
+ggplot(BOD,aes(time, demand))+
+  geom_point(size = 3)+
+  geom_line(colour = "red")
+
+View(co2)
+
+co2 %>%
+  ggplot(aes(conc, uptake,
+             colour = Treatment))+
+  geom_point(size = 3, alpha = 0.5)+
+  geom_smooth(method = 1m,se = F)+
+  facet_wrap(~type)+
+  labs(title = "concentration of co2")+
+  theme_bw()
+
+co2 %>%
+  ggplot(aes(Treatment, update))+
+  geom_boxplot()+
+  geom_point(aes(size = conc,
+                 colour = plant))+
+  facet_wrap(~Type)+
+  coord_flip()+
+  theme_bw()+
+  labs(title = "chilled vs Non-chilled")
+
+View(mpg)
+
+mpg %>%
+  ggplot(aes(displ, cty))+
+  geom_point(aes(colour = drv,
+                 size = trans),
+             alpha = 0.5)+
+  geom_smooth(method = 1m)+
+  facet_wrap(~year, nrow = 1)+
+  labs(x = "Engine Size",
+       Y = "MPG in the city",
+       title = "Fuel efficiency")+
+  theme_bw()
+
+
+  

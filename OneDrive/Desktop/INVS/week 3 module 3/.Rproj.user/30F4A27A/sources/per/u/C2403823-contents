@@ -1,0 +1,38 @@
+library(tidyverse)
+
+data()
+
+?BOD
+
+ggplot(data = BOD,
+       mapping = aes(x = Time,
+                     y = demand))+
+
+  
+ggplot(BOD,aes(Time, demand))+
+  geom_point(size = 3)+
+  geom_line(colour = "red")
+
+co2
+
+view(co2)
+
+CO2 %>%
+  ggplot(aes(conc, uptake,
+             colour = Treatment))+
+  geom_point(size = 3, alpha = 0.5)+
+  geom_smooth(method = lm, se = F)+
+  facet_wrap(~Type)+
+  labs(title = "concentration of CO2")+
+  theme_bw()
+
+
+CO2 %>%
+  ggplot(aes(Treatment, uptake))+
+  geom_point()+
+  geom_point(alpha = 0.5,
+             aes(size = conc,
+                 colour = plant))+
+  
+  
+ 

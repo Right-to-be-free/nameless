@@ -1,0 +1,108 @@
+---
+title: "Week 6 assignment"
+author: "Harish"
+date: "2022-10-10"
+output: html_document
+---
+
+```{r, message=FALSE}
+library(ggplot2) 
+library(dplyr) 
+
+train <- read.csv('train.csv')
+test <- read.csv('test.csv')
+# test doesn't have outcome - Survived
+
+str(train)
+
+```
+Variable Name | Description
+--------------|-------------
+Survived      | Survived (1) or died (0)
+Pclass        | Passenger's class
+Name          | Passenger's name
+Sex           | Passenger's sex
+Age           | Passenger's age
+SibSp         | Number of siblings/spouses aboard
+Parch         | Number of parents/children aboard
+Ticket        | Ticket number
+Fare          | Fare
+Cabin         | Cabin
+Embarked      | Port of embarkation
+
+Training data:
+Total number of passengers - 891
+Survival status distribution - 342/891=38.4% survived
+
+```{r}
+length(train$PassengerId)
+table(train$Survived)
+```
+# Exploratory data analysis
+The goal of this part of the analysis is to understand the data
+
+## Possible predictors  
+The following have strong impacts on Survival status:
+* Pclass - higher class cabin passengers are more likely to survive
+* Gender - female is much favored
+* Age - kids (age < 10) are more possible to survive 59% for <10, >62 low chance 20%
+* SibSp - more sibling/spouse, less chance to survive? >2.5 only 7/46 15%
+* Parch - doesn't seem to have an impact
+* People who travel alone - less chance to survive
+
+The following don't seem to have impact on Survival status:
+* Fare and Pclass are correlated, so no need to consider Fare
+* Embarked
+* Cabin - cabin number
+* Ticket - ticket number
+
+```{r}
+table(train$Pclass, train$Survived)
+ggplot(train,aes(x=Pclass,fill=factor(Survived)))+
+  geom_histogram(stat="count")
+```
+```{r}
+table(train$Sex, train$Survived)
+ggplot(train,aes(x=Sex,fill=factor(Survived)))+
+  geom_histogram(stat="count")
+```
+```{r}
+ggplot(train,aes(x=Age,fill=factor(Survived)))+
+  geom_histogram(binwidth=2)
+  
+train$kid <- ifelse (train$Age<=10, "Yes", "No")
+table(train$kid, train$Survived)
+
+train$old <- ifelse (train$Age>62, "Yes", "No")
+table(train$old, train$Survived)
+```
+```{r}
+ggplot(train,aes(x=Fare,fill=factor(Survived)))+
+  geom_histogram(binwidth=10)
+  
+library(dplyr)
+train %>% 
+group_by(Pclass) %>% 
+summarize(n=length(Fare), mean=mean(Fare), min=min(Fare), max=max(Fare))
+```
+```{r}
+ggplot(train,aes(x=SibSp,fill=factor(Survived)))+
+  geom_histogram(binwidth=1)
+  
+train$moreSibSp <- ifelse (train$SibSp>2.5, "Yes", "No")
+table(train$moreSibSp, train$Survived)
+```
+```{r}
+ggplot(train,aes(x=Parch,fill=factor(Survived)))+
+  geom_histogram(binwidth=1)
+```
+```{r}
+ggplot(train,aes(x=Embarked,fill=factor(Survived)))+
+  geom_histogram(stat="count")
+```
+
+```{r}
+train$single <- ifelse(train$SibSp==0 & train$Parch==0, "Yes", "No")
+table(train$single, train$Survived)
+```
+

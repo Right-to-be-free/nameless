@@ -1,0 +1,30 @@
+library(tidyverse)
+
+
+CO2 %>%
+  ggplot(aes(Treatment, uptake))+
+  geom_boxplot()+
+  geom_point(alpha = 0.5,
+             aes(size = conc,
+                 colour = Plant))+
+  facet_wrap(~Type)+
+  coord_flip()+
+  theme_bw()+
+  labs(title = "chilled vs Non-chilled")
+
+mpg
+
+View(mpg)
+
+mpg %>%
+  ggplot(aes(displ, cty))+
+  geom_point(aes(colour = drv,
+                 size = trans),
+             alpha = 0.5)+
+  geom_smooth(method = lm)+
+  facet_wrap(~year, nrow = 1)+
+  labs(x = "engine size",
+       y = "MPG in the city",
+       title = "Fuel efficiency")+
+  theme_bw()
+ 
