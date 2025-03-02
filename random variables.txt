@@ -1,0 +1,22 @@
+A random variable is a mathematical formalization of a quantity or object which depends on random events.
+ex- data from senses, Sports scores, and scientific experiments.
+
+A variable is a characteristic, number, or quantity that can be measured or counted, such as a phone number, address, or date of birth.
+
+A discrete variable is a variable that takes on distinct, countable values
+ex-name, age, location.
+
+A continuous variable is a variable that can take on an infinite number of values within a range ex- gas price 3.29999, grocery bill- 211.29999, 
+
+ 
+A random event is an occurrence that cannot be predicted with certainty. Although it is unpredictable, the probability of different outcomes can be calculated.
+ex-lottery, ETA for a distance, experimental outcomes.
+prime number
+
+ A prime number is a number that can only be divided by itself and 1 without remainder ex- 2,5,7,11.
+
+In mathematics, a "sample space" refers to the set of all possible outcomes of a random experiment, essentially listing every potential result that could occur in a given situation
+
+In mathematics, an "outcome" refers to a possible result of an experiment or trial, essentially meaning any single potential result that could occur when performing a probabilistic event
+
+In mathematics, "output" refers to the result or value produced by a function after an input is processed
